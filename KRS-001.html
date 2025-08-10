@@ -7,9 +7,10 @@
       schema: KRS-001
       index: 1
       title: Kraskaska Repository Specification Process
-      status: finalized
+      status: published
       authors:
         - Kraskaska
+      license: 0BSD
     </script>
   </head>
   <body>
@@ -17,6 +18,7 @@
       <h1>KRS-001: Kraskaska Repository Specification Process</h1>
       <p><i>by Kraskaska</i></p>
       <p><b>License:</b> <code>BSD Zero Clause License</code></p>
+      <p><b>Status:</b> published</p>
     </header>
     <main>
       <header>
@@ -149,8 +151,8 @@
           <p>
             The document MUST contain a <code>body</code> tag. In it there MUST
             be at least a <code>header</code> and a <code>main</code> tag. The
-            body contains the description of the KRS written in formal English
-            language.
+            body contains the information and description of the KRS written in
+            formal English language.
           </p>
           <section>
             <h4>3.2.1. Header</h4>
@@ -166,18 +168,268 @@
             </p>
             <p>
               The <code>header</code> MUST also contain a <code>p</code> tag
-              specifying the SPDX of an OSI-approved license, which applies to
-              the whole document. The KRS board will reject publication of KRSes
-              that do not have an OSI-approved license.
+              specifying the SPDX identifier of an OSI-approved license, which
+              applies to the whole document. The KRS board will reject
+              publication of KRSes that do not have an OSI-approved license.
+            </p>
+            <p>
+              The <code>header</code> MUST also contain a <code>p</code> tag
+              specifying the status of the document. The status may be one of
+              the following:
+            </p>
+            <ul>
+              <li>
+                <code>Draft</code> - the document is a draft, and hasn't yet
+                been voted upon to be considered for inclusion in KRS
+                repository.
+              </li>
+              <li>
+                <code>Under consideration</code> - the document has passed a
+                vote on being included in the KRS repository, and is now under
+                active revisioning by interested parties.
+              </li>
+              <li>
+                <code>Published</code> - the document was finalized and passed
+                the vote for publication, and is now published in the
+                repository.
+              </li>
+              <li>
+                <code>Dropped</code> - the document was dropped because of a
+                lost interest in standardization and a pass of vote for
+                dropping.
+              </li>
+            </ul>
+            <p>
+              Documents that are in repository MUST have a status of
+              <code>published</code>
+            </p>
+            <p>
+              The <code>header</code> MAY contain a <code>p</code> tag
+              specifying a KRS document that this KRS document updates.
+            </p>
+            <p>
+              The <code>header</code> MAY contain a <code>p</code> tag
+              specifying KRS documents that this KRS document obsoletes.
             </p>
             <p>
               The <code>header</code> tag MAY contain other elements not defined
               here.
             </p>
           </section>
+          <section>
+            <h4>3.2.2. Description</h4>
+            <p>
+              The <code>main</code> tag contains the description of the KRS
+              document. It consists of multiple <code>section</code>s, that MUST
+              contain a heading (<code>h2</code>, <code>h3</code>,
+              <code>h4</code>, <code>h5</code>, <code>h6</code>) and MAY contain
+              a body, and subsections that follow the same rules.
+            </p>
+            <section>
+              <h5>3.2.2.1. "Abstract" section</h5>
+              <p>
+                The description of KRS document MUST contain an abstract section
+                inside a <code>header</code> tag, instead of regular
+                <code>section</code> tag. The heading MUST be "Abstract". This
+                section MUST contain a short summary of what the KRS document
+                describes. The contents of this section MAY be inlined by a KRS
+                viewer (program that parses and displays the KRSes).
+              </p>
+            </section>
+          </section>
+          <section>
+            <h4>3.2.3. Footer</h4>
+            <p>
+              The body MAY contain a <code>footer</code> tag preceeded by an
+              <code>hr</code> tag. The footer MAY contain the contact
+              information of the authors of the KRS document.
+            </p>
+          </section>
         </section>
       </section>
+      <section>
+        <h2>4. KRS Document YAML Metadata</h2>
+        <p>
+          This section describes the KRS Document YAML metadata that is included
+          in the <code>head > script type="application/yaml"</code> element of
+          the document.
+        </p>
+        <section>
+          <h3>4.1. <code>schema</code></h3>
+          <p>
+            The YAML root key <code>schema</code> MUST contain a reference to
+            the schema KRS document that defines the structure of the KRS
+            document. It MUST follow format of <code>KRS-XXX</code>, where XXX
+            MUST be the permanent index assigned to the published KRS, if any,
+            with leading zeros to pad the index to at least 3 digits, that
+            defines the structure of a KRS document as well as its metadata.
+          </p>
+        </section>
+        <section>
+          <h3>4.2. <code>index</code></h3>
+          <p>
+            The YAML root key <code>index</code> MUST contain the assigned
+            permanent index of the KRS, or the string <code>pending</code> if
+            it's not available yet. The value MUST be an unadorned integer with
+            no leading zeroes.
+          </p>
+        </section>
+        <section>
+          <h3>4.3. <code>title</code></h3>
+          <p>
+            The YAML root key <code>title</code> MUST contain the title of the
+            document as defined in section 3.1. of this document. Title in YAML
+            and title in <code>head</code> MUST be equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.4. <code>status</code></h3>
+          <p>
+            The YAML root key <code>status</code> MUST contain the publication
+            status of the KRS document. The publication status MUST be one of
+            the following:
+          </p>
+          <ul>
+            <li>
+              <code>draft</code> - the document is a draft, and hasn't yet been
+              voted upon to be considered for inclusion in KRS repository.
+            </li>
+            <li>
+              <code>under-consideration</code> - the document has passed a vote
+              on being included in the KRS repository, and is now under active
+              revisioning by interested parties.
+            </li>
+            <li>
+              <code>published</code> - the document was finalized and passed the
+              vote for publication, and is now published in the repository.
+            </li>
+            <li>
+              <code>dropped</code> - the document was dropped because of a lost
+              interest in standardization and a pass of vote for dropping.
+            </li>
+          </ul>
+          <p>
+            Documents that are in repository MUST have a status of
+            <code>published</code>
+          </p>
+          <p>
+            Contents of this key and the status in HTML document
+            <code>body > header</code> MUST be equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.5. <code>authors</code></h3>
+          <p>
+            The YAML root key <code>authors</code> MUST contain an array of
+            authors that worked on this KRS. Contents of this key and the list
+            of authors in HTML document <code>body > header</code> MUST be
+            equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.6. <code>license</code></h3>
+          <p>
+            The YAML root key <code>license</code> MUST contain the SPDX
+            identifier of an OSI-approved license, which applies to the whole
+            document. The KRS board will reject publication of KRSes that do not
+            have an OSI-approved license. Contents of this key and the license
+            in HTML document <code>body > header</code> MUST be equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.6. <code>updates</code></h3>
+          <p>
+            The OPTIONAL YAML root key <code>updates</code> MAY contain the
+            assigned permanent index of a KRS that this document updates.
+            Contents of this key and paragraph specifying the updated KRS in
+            HTML document <code>body > header</code> MUST be equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.6. <code>obsoletes</code></h3>
+          <p>
+            The OPTIONAL YAML root key <code>obsoletes</code> MAY contain an
+            array of the assigned permanent indicies of a KRS that this document
+            obsoletes. Contents of this key and paragraph specifying the
+            obsoleted KRSes in HTML document <code>body > header</code> MUST be
+            equivalent.
+          </p>
+        </section>
+        <section>
+          <h3>4.7. Other tags</h3>
+          <p>
+            YAML MAY contain other root keys not defined here, but they MUST be
+            prefixed.
+          </p>
+          <section>
+            <h4>4.7.1. KRS keys</h4>
+            <p>
+              Other KRSes MAY define extra YAML root keys prefixed with
+              <code>krs-xxx-</code>, where xxx is assigned permanent index of a
+              KRS that defines the semantics and contents of the key.
+            </p>
+          </section>
+          <section>
+            <h4>4.7.2. Vendor-specific keys</h4>
+            <p>
+              Root keys that are not defined in KRSes MAY be included in YAML if
+              they are prefixed with <code>x-</code>. The semantics of such keys
+              are undefined.
+            </p>
+          </section>
+        </section>
+      </section>
+      <section>
+        <h2>5. The KRS board</h2>
+        <p>
+          The KRS board performs tasks in maintaining the KRS repository as well
+          as performing voting for the KRS standards to be included in the
+          repository.
+        </p>
+        <p>
+          Currently, KRS Special Interest Group (KRS-SIG) assumes the position
+          of the KRS board.
+        </p>
+        <p>
+          KRS-SIG consists of members interested in advancement of the KRS
+          repository. The members perform the duties of KRS board, as well as
+          any other action within KRS-SIG by initiating voting, and the actions
+          are carried out depending on the results of the voting.
+        </p>
+        <p>
+          One of the members of KRS-SIG has a role of a leader. A leader may
+          only be chosen by previous leader, or, in the event of an emergency,
+          by voting if asking the opinion of the previous leader is no longer
+          physically possible due to circumstances beyond the control of the
+          group. The leader may perform any action and any duties of the group
+          WITHOUT initiating voting, and may also override the voting results.
+        </p>
+      </section>
+      <section>
+        <h2>6. Canonical repository location and board membership</h2>
+        <p>
+          Currently, the canonical location for the KRS repository is GitHub
+          repository located at <code>kraskaska/krs</code> (<a
+            href="https://github.com/kraskaska/krs"
+            >https://github.com/kraskaska/krs</a
+          >).
+        </p>
+        <p>
+          KRS-SIG members currently consist of the members of the KRS-SIG team
+          in the GitHub organization <code>kraskaska</code> (<a
+            href="https://github.com/kraskaska"
+            >https://github.com/kraskaska</a
+          >).
+        </p>
+        <p>Currently, the leader of KRS-SIG is Kraskaska.</p>
+      </section>
     </main>
-    <footer></footer>
+    <hr />
+    <footer>
+      <p>Kraskaska</p>
+      <p>
+        <a href="https://github.com/getkirill">https://github.com/getkirill</a>
+      </p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KRS-001: Kraskaska Repository Specification Process</title>
+    <script type="application/yaml">
+      schema: KRS-001
+      index: 1
+      title: Kraskaska Repository Specification Process
+      status: finalized
+      authors:
+        - Kraskaska
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>KRS-001: Kraskaska Repository Specification Process</h1>
+      <p><i>by Kraskaska</i></p>
+      <p><b>License:</b> <code>BSD Zero Clause License</code></p>
+    </header>
+    <main>
+      <header>
+        <h2>Abstract</h2>
+        <p>
+          This document defines a Kraskaska Repository Specification
+          (abbreviated as KRS). KRSes are documents defining specifications,
+          protocols, standards, or any other information that requires rigid
+          structuring and clear definitions. Besides the KRSes themselves this
+          document also describes the process of creating a KRS, and getting it
+          included into the official Kraskaska Repository.
+        </p>
+        <footer>
+          <i
+            >Note: KRSes are not meant to be taken seriously. KRSes are not RFCs
+            - internet standards published by IETF - even if they may look as
+            such.</i
+          >
+        </footer>
+      </header>
+      <section>
+        <h2>1. Introduction</h2>
+        <p>
+          Kraskaska Repository Specification (abbreviated as KRS) is a process
+          of defining standards in a rigid, structured format, as well as the
+          name of the standards themselves. During this process, a new KRS is
+          defined following the structure described in this KRS.
+        </p>
+        <p>
+          The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+          "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+          document are to be interpreted as described in RFC 2119.
+        </p>
+      </section>
+      <section>
+        <h2>2. Process outline</h2>
+        <p>Process is, generally, as follows:</p>
+        <ol>
+          <li>A need for a standard appears.</li>
+          <li>A draft of associated KRS is written.</li>
+          <li>The KRS board MUST vote on whether the KRS is needed.</li>
+          <li>
+            If the vote passes, the KRS draft is now <i>under consideration</i>.
+          </li>
+          <li>The draft SHOULD be revised by interested parties.</li>
+          <li>
+            Interested parties MAY comment on the latest revision, suggesting
+            changes and implementing them in a new revision. This is repeated,
+            until...
+          </li>
+          <li>A final revision is made.</li>
+          <li>
+            The KRS board MUST vote on whether the final revision of KRS is
+            ready for publication, following the established procedures.
+          </li>
+          <li>
+            If the vote passes, the final revision of KRS is <i>published</i> in
+            the repository, making the KRS official and granting it a
+            <i> permanent KRS index </i>.
+          </li>
+        </ol>
+        <p>
+          The KRS draft MAY get dropped after being put
+          <i>under consideration</i>, if the parties become disinterested in the
+          standardization.
+        </p>
+        <p>
+          Once the KRS is published it MUST NOT be modified in any way, except
+          for changing metadata, fixing formatting issues and correcting typos.
+        </p>
+        <p>
+          If the need arises a newer KRS MAY <i>obsolete</i> an older published
+          KRS. If that were to happen the newer KRS SHOULD be prioritised over
+          the older obsoleted KRS.
+        </p>
+        <p>
+          Instead of obsoleting a newer KRS MAY instead <i>update</i> an
+          existing published KRS. When referencing the KRS the original and all
+          associated updates SHOULD be considered together. If the original KRS
+          is obsoleted all KRSes that update the original MUST be considered
+          obsolete as well.
+        </p>
+        <p>
+          If the need arises there MAY be an <i>errata</i> published that
+          corrects the mistakes in the contents of the KRS, or that explains
+          vague details that were left out, accidentally or not. The erratas do
+          not have their own index, but they MUST refer to a published KRS
+          permanent index. The erratas, like KRSes, MUST NOT be modified in any
+          way, except for changing metadata, fixing formatting issues and
+          correcting typos.
+        </p>
+      </section>
+      <section>
+        <h2>3. Specification document structure</h2>
+        <p>
+          A KRS document MUST be a valid HTML5 document, containing an
+          <code>html</code> tag with the attribute <code>lang</code> set to
+          <code>en</code>. This section describes the structure of the document.
+        </p>
+        <section>
+          <h3>3.1. Metadata</h3>
+          <p>The document MUST contain a <code>head</code> tag.</p>
+          <p>
+            The <code>head</code> tag MUST contain a <code>title</code> tag
+            containing the title of the KRS document, which follows the
+            format:<br />
+          </p>
+          <pre><code>KRS-XXX: T</code></pre>
+          <p>
+            <code>XXX</code> is the permanent index assigned to the KRS, if any,
+            with leading zeros to pad the index to at least 3 digits. If no
+            permanent index is assigned to the document (due to it still being a
+            draft or pending publication) the XXX MAY be set to the estimated
+            index that would be granted to the KRS after publication, or the XXX
+            MAY be set to the word "<code>PENDING</code>".
+          </p>
+          <p>
+            <code>T</code> is the title of the standard, and it doesn't follow
+            any semantics.
+          </p>
+          <p>
+            The <code>head</code> MUST also contain a <code>script</code> tag
+            with attribute <code>type</code> set to
+            <code>application/yaml</code>. This tag contains YAML metadata
+            specifying KRS properties in a machine readable form.
+          </p>
+        </section>
+        <section>
+          <h3>3.2. Document body</h3>
+          <p>
+            The document MUST contain a <code>body</code> tag. In it there MUST
+            be at least a <code>header</code> and a <code>main</code> tag. The
+            body contains the description of the KRS written in formal English
+            language.
+          </p>
+          <section>
+            <h4>3.2.1. Header</h4>
+            <p>
+              The <code>header</code> tag MUST contain an <code>h1</code> that
+              MUST match the contents of the previously defined
+              <code>title</code> tag.
+            </p>
+            <p>
+              The <code>header</code> MUST also contain a <code>p</code> tag or
+              a <code>ul</code> tag containing the author or authors of the KRS
+              document.
+            </p>
+            <p>
+              The <code>header</code> MUST also contain a <code>p</code> tag
+              specifying the SPDX of an OSI-approved license, which applies to
+              the whole document. The KRS board will reject publication of KRSes
+              that do not have an OSI-approved license.
+            </p>
+            <p>
+              The <code>header</code> tag MAY contain other elements not defined
+              here.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
